@@ -1,0 +1,22 @@
+<ul class="breadcrumb" id="breadcrumbs">
+	<?php
+	// iterate through the pages
+	foreach ($this->pages as $key => $page):
+		?>
+		<li>
+			<?php
+			// if this isn't the last page, add a link and the separator
+			if ($key == 0) :
+				?>
+				<a href="<?php echo $page->getHref(); ?>"><i class="icon-home2 position-left"></i></a>
+			<?php elseif ($key < count($this->pages) - 1):
+				?>
+				<a href="<?php echo $page->getHref(); ?>"><?php echo $page->getLabel(); ?></a>
+			<?php // otherwise, just output the name
+			else:
+				?>
+				<span><?php echo $page->getLabel(); ?></span>
+			<?php endif; ?>
+		</li>
+	<?php endforeach; ?>
+</ul>

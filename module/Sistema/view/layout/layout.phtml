@@ -1,0 +1,240 @@
+<?php use Zend\Mvc\Controller\Plugin\FlashMessenger;
+
+echo $this->doctype(); ?>
+
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<?php echo $this->headTitle('Sistema Administrativo')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+	<?php echo $this->headMeta()
+	                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+	                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+	?>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<?php $css = $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico']) ?>
+	<!-- Le styles -->
+	<?php $css->appendStylesheet($this->basePath('sistema/css/icons/icomoon/styles.css')) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/bootstrap.css')) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/core.css')) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/components.css')) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/colors.css')) ?>
+
+	<?php echo $css ?>
+
+	<?php $js = $this->headScript(); ?>
+	<!-- Core JS files -->
+	<?php $js->appendFile($this->basePath('sistema/js/core/libraries/jquery.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/loaders/pace.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/core/libraries/bootstrap.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/loaders/blockui.min.js')) ?>
+	<!-- /core JS files -->
+	<!-- Theme JS files -->
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/visualization/d3/d3.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/visualization/d3/d3_tooltip.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/forms/styling/switchery.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/forms/styling/uniform.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/ui/moment/moment.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/pickers/daterangepicker.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/pagination/bootpag.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/pagination/bs_pagination.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/pagination/datepaginator.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/core/app.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/pages/dashboard.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/pages/components_pagination.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/forms/selects/select2.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/forms/styling/uniform.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/pages/form_layouts.js')) ?>
+
+	<?php $js->appendFile($this->basePath('sistema/js/custom.js')) ?>
+
+	<?php echo $js ?>
+	<?php echo $this->inlineScript() ?>
+
+	<!-- /theme JS files -->
+
+</head>
+<body>
+<!-- Main navbar -->
+<div class="navbar navbar-inverse">
+	<div class="navbar-header">
+		<a href=""></a>
+		<a class="navbar-brand" href="<?php echo $this->url('sistema-home') ?>"><img src="<?php echo $this->basePath('sistema/images/logo_light.png') ?>" alt=""></a>
+
+		<ul class="nav navbar-nav visible-xs-block">
+			<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+			<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+		</ul>
+	</div>
+
+	<div class="navbar-collapse collapse" id="navbar-mobile">
+		<ul class="nav navbar-nav">
+			<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+		</ul>
+		<!--		<p class="navbar-text"><span class="label bg-success-400">Online</span></p>-->
+
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown dropdown-user">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					<img src="<?php echo $this->basePath('sistema/images/placeholder.jpg') ?>" alt="">
+					<span><?php echo $this->UserIdentity('Sistema')->getName() ?></span>
+					<i class="caret"></i>
+				</a>
+
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+					<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
+					<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+					<li class="divider"></li>
+					<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+					<li><a href="<?php echo $this->url('sistema-logout') ?>"><i class="icon-switch2"></i> Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- /main navbar -->
+
+
+<!-- Page container -->
+<div class="page-container">
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main sidebar -->
+		<div class="sidebar sidebar-main">
+			<div class="sidebar-content">
+
+				<!-- User menu -->
+				<div class="sidebar-user">
+					<div class="category-content">
+						<div class="media">
+							<a href="#" class="media-left"><img src="<?php echo $this->basePath('sistema/images/placeholder.jpg') ?>" class="img-circle img-sm" alt=""></a>
+							<div class="media-body">
+								<span class="media-heading text-semibold"><?php echo $this->UserIdentity('Sistema')->getName() ?></span>
+							</div>
+
+							<div class="media-right media-middle">
+								<ul class="icons-list">
+									<li>
+										<a href="#"><i class="icon-cog3"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /user menu -->
+
+				<!-- Main navigation -->
+				<div class="sidebar-category sidebar-category-visible">
+					<div class="category-content no-padding">
+
+						<?php
+						echo $this->navigation('Zend\Navigation\Sistema')
+						          ->menu()
+						          ->setMinDepth(0)
+						          ->setMaxDepth(2)
+						          ->setPartial(array('partial/navigation.phtml', 'Sistema'));
+						?>
+					</div>
+				</div>
+				<!-- /main navigation -->
+			</div>
+		</div>
+		<!-- /main sidebar -->
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Page header -->
+			<div class="page-header">
+				<div class="page-header-content">
+					<div class="page-title">
+						<h4>
+							<!--<i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard-->
+							<i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><?php echo $this->controllerName() ?></span>
+						</h4>
+					</div>
+
+					<div class="heading-elements">
+						<div class="heading-btn-group">
+							<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>
+							<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>
+							<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="breadcrumb-line">
+					<?php echo $this->navigation('Zend\Navigation\Sistema')// <-- Update this!!
+					                ->breadcrumbs()
+					                ->setPartial(['partial/breadcrumb.phtml', 'Sistema']);
+					?>
+					<!--						<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>-->
+					<!--						<li class="active">Dashboard</li>-->
+
+					<ul class="breadcrumb-elements">
+						<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="icon-gear position-left"></i>
+								Settings
+								<span class="caret"></span>
+							</a>
+
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+								<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+								<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+								<li class="divider"></li>
+								<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /page header -->
+
+
+			<!-- Content area -->
+			<div class="content">
+
+				<div class="row">
+					<?php
+					$flash = $this->flashMessenger();
+					$flash->setMessageOpenFormat('<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button><div>')->setMessageCloseString('</div></div>');
+					echo $flash->render(FlashMessenger::NAMESPACE_ERROR, array('alert', 'alert-dismissable', 'bg-danger'));
+					echo $flash->render(FlashMessenger::NAMESPACE_INFO, array('alert', 'alert-dismissable', 'bg-info'));
+					echo $flash->render(FlashMessenger::NAMESPACE_DEFAULT, array('alert', 'alert-dismissable', 'bg-warning'));
+					echo $flash->render(FlashMessenger::NAMESPACE_SUCCESS, array('alert', 'alert-dismissable', 'bg-success'));
+					?>
+				</div>
+				<script type="text/javascript">
+					$(function () {
+						alert('aaaaa');
+						$("#actions li").on('click', function () {
+							elementlist = $(this).parent;
+							alert('Element ' + elementlist.index(this) + ' was clicked');
+						});
+					});
+				</script>
+				<div class="row">
+					<?php echo $this->content; ?>
+				</div>
+				<!-- Footer -->
+				<div class="footer text-muted">
+					&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+				</div>
+				<!-- /footer -->
+
+			</div><!-- /content area -->
+		</div>
+		<!-- /main content -->
+	</div>
+	<!-- /page content -->
+</div>
+<!-- /page container -->
+</body>
+</html>

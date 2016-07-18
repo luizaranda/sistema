@@ -1,0 +1,40 @@
+<ul class="navigation navigation-main navigation-accordion">
+	<?php
+	foreach ($this->container as $page) {
+		$hasChildren = $page->hasPages();
+		if (!$hasChildren) {
+			?>
+			<li <?php if ($page->isActive()) echo 'class="active"' ?>><a href="<?php echo $page->getHref(); ?>">
+					<?php if ($page->get('icon')): ?>
+						<i class="<?php echo $page->get('icon'); ?>"></i>
+					<?php endif; ?>
+					<?php echo $page->getLabel(); ?></a></li>
+			<?php
+		} else {
+			?>
+			<li <?php if ($page->isActive()) echo 'class="active"' ?>>
+				<a href="<?php echo $page->getHref(); ?>">
+					<?php if ($page->get('icon')): ?>
+						<i class="<?php echo $page->get('icon'); ?>"></i>
+					<?php endif; ?>
+					<?php echo $page->getLabel(); ?></a>
+				<ul>
+					<?php
+					foreach ($page->getPages() as $child) {
+						?>
+						<li <?php if ($child->isActive()) echo 'class="active"' ?>><a href="<?php echo $child->getHref(); ?>">
+								<?php if ($child->get('icon')): ?>
+									<i class="<?php echo $child->get('icon'); ?>"></i>
+								<?php endif; ?>
+								<?php echo $child->getLabel(); ?>
+							</a></li>
+						<?php
+					}
+					?>
+				</ul>
+			</li>
+			<?php
+		}
+	}
+	?>
+</ul>

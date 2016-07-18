@@ -1,0 +1,57 @@
+<div class="panel panel-flat">
+	<div class="panel-heading">
+		<h5 class="panel-title">Privilégios Cadastrados</h5>
+		<div class="heading-elements">
+			<ul class="icons-list">
+				<li><a data-action="collapse"></a></li>
+				<li><a data-action="reload"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<div class="col-sm-4">
+			<a class="btn btn-primary btn-labeled btn-xs" href="<?php echo $this->url('acl-home/default', ['controller' => 'privilege', 'action' => 'new']) ?>"><b><i class="icon-plus2"></i></b> Novo</a>
+		</div>
+		<table class="table table-hover">
+			<thead>
+			<tr>
+				<th>#ID</th>
+				<th>Nome</th>
+				<th>Recurso</th>
+				<th>Regra</th>
+				<th>Criado em</th>
+				<th>Alterado em</th>
+				<th>Ações</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php if (count($this->data) > 0) { ?>
+				<?php foreach ($this->data as $entity) : ?>
+					<tr>
+						<td><?php echo $entity->getId() ?></td>
+						<td><?php echo $entity->getName() ?></td>
+						<td><?php echo $entity->getResource() ?></td>
+						<td><?php echo $entity->getRole() ?></td>
+						<td><?php echo $entity->getCreatedAt() ?></td>
+						<td><?php echo $entity->getUpdatedAt() ?></td>
+						<td>
+							<ul class="icons-list" id="actions">
+								<li class="text-primary-600"><a onclick="" href="<?php echo $this->url('acl-home/default', ['controller' => 'privilege', 'action' => 'edit', 'id' => $entity->getId()]) ?>"><i class="icon-pencil7"></i></a></li>
+								<?php //echo $this->url('acl-home/default', ['controller' => 'privilege', 'action' => 'delete', 'id' => $entity->getId()]) ?>
+								<li class="text-danger-600"><a href="#"><i class="icon-trash"></i></a></li>
+							</ul>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			<?php } else { ?>
+				<tr>
+					<td colspan="9">Nenhum resultado encontrado</td>
+				</tr>
+			<?php } ?>
+			</tbody>
+		</table>
+	</div>
+	<div class="panel-footer">
+		<?php echo $this->paginationControl($this->data, 'Sliding', 'layout/paginator', ['route' => 'acl-home/paginator', 'controller' => 'privilege', 'action' => 'index']); ?>
+	</div>
+</div>

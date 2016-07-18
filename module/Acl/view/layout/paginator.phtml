@@ -1,0 +1,42 @@
+<?php if ($this->pageCount): ?>
+	<div class="row">
+		<div class="text-center">
+			<div>Mostrando <?php echo $this->firstItemNumber ?> a <?php echo $this->lastItemNumber ?> de <?php echo $this->totalItemCount ?> registros</div>
+			<ul class="pagination pagination-flat pagination-rounded">
+				<?php if (isset($this->previous)): ?>
+					<li><a href="<?php echo $this->url("{$this->route}", ['controller' => $this->controller, 'action' => $this->action, 'page' => $this->first]) ?>">&lsaquo;&lsaquo;</a></li>
+				<?php else: ?>
+					<li class="disabled"><a href="#">&lsaquo;&lsaquo;</a></li>
+				<?php endif ?>
+
+				<?php if (isset($this->previous)): ?>
+					<li><a href="<?php echo $this->url("{$this->route}", ['controller' => $this->controller, 'action' => $this->action, 'page' => $this->previous]) ?>">&lsaquo;</a></li>
+				<?php else: ?>
+					<li class="disabled"><a href="#">&lsaquo;</a></li>
+				<?php endif ?>
+
+				<?php foreach ($this->pagesInRange as $page): ?>
+
+					<?php if ($page != $this->current): ?>
+						<li><a href="<?php echo $this->url("{$this->route}", ['controller' => $this->controller, 'action' => $this->action, 'page' => $page]) ?>"><?php echo $page ?></a></li>
+					<?php else: ?>
+						<li class="active"><a href="#"><?php echo $page ?></a></li>
+					<?php endif ?>
+
+				<?php endforeach ?>
+
+				<?php if (isset($this->next)): ?>
+					<li><a href="<?php echo $this->url("{$this->route}", ['controller' => $this->controller, 'action' => $this->action, 'page' => $this->next]) ?>">&rsaquo;</a></li>
+				<?php else: ?>
+					<li class="disabled"><a href="#">&rsaquo;</a></li>
+				<?php endif ?>
+
+				<?php if (isset($this->next)): ?>
+					<li><a href="<?php echo $this->url("{$this->route}", ['controller' => $this->controller, 'action' => $this->action, 'page' => $this->last]) ?>">&rsaquo;&rsaquo;</a></li>
+				<?php else: ?>
+					<li class="disabled"><a href="#">&rsaquo;&rsaquo;</a></li>
+				<?php endif ?>
+			</ul>
+		</div>
+	</div>
+<?php endif ?>

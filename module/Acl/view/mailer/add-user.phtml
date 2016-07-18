@@ -1,0 +1,7 @@
+<p>
+	Olá <?php echo $this->name; ?>,
+	<br/>
+	<br/>
+	Obrigado por realizar seu cadastro em nosso sistema. Para ativar sua conta, por favor clique no link a seguir.
+	http://localhost:8080<?php echo $this->url('acl-home/user-activate', ['key' => $this->activationKey]); ?>"
+</p>

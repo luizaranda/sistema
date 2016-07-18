@@ -1,0 +1,29 @@
+<div class="col-md-6">
+	<?php
+	$form = $this->form;
+	$form->setAttribute('action', $this->url('acl-home/default', ['controller' => 'role', 'action' => 'edit']));
+	$form->prepare();
+	?>
+	<div class="panel panel-flat">
+		<div class="panel-heading">
+			<h5 class="panel-title">Editar Perfil</h5>
+		</div>
+		<div class="panel-body">
+			<?php echo $this->form()->openTag($form); ?>
+			<?php echo $this->formHidden($form->get('id')); ?>
+			<?php echo $this->formHidden($form->get('security')); ?>
+			<div class="form-group">
+				<?php echo $this->formRow($form->get('name')); ?>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formRow($form->get('parent')); ?>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formRow($form->get('is_admin')); ?>
+			</div>
+			<?php echo $this->formRow($form->get('submit')); ?>
+			<?php echo $this->form()->closeTag(); ?>
+		</div>
+	</div>
+</div>
+

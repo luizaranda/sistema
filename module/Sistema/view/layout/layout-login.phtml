@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<?php $css = $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico']) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/icons/icomoon/styles.css')) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/bootstrap.css')) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/core.css')) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/components.css')) ?>
+	<?php $css->appendStylesheet($this->basePath('sistema/css/colors.css')) ?>
+	<?php echo $css ?>
+	<!-- /global stylesheets -->
+
+	<?php $js = $this->headScript(); ?>
+	<!-- Core JS files -->
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/loaders/pace.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/core/libraries/jquery.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/core/libraries/bootstrap.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/loaders/blockui.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/plugins/forms/styling/uniform.min.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/core/app.js')) ?>
+	<?php $js->appendFile($this->basePath('sistema/js/pages/login.js')) ?>
+	<!-- /core JS files -->
+	<?php echo $js ?>
+	<?php echo $this->inlineScript() ?>
+
+</head>
+
+<body class="login-cover">
+
+<!-- Page container -->
+<div class="page-container login-container">
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Content area -->
+			<div class="content">
+
+				<!-- Tabbed form -->
+				<div class="tabbable panel login-form width-400">
+
+					<?php echo $this->content; ?>
+
+				</div>
+				<!-- /tabbed form -->
+
+				<!-- Footer -->
+				<div class="footer text-white">
+					&copy; 2015. <a href="#" class="text-white">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" class="text-white" target="_blank">Eugene Kopyov</a>
+				</div>
+				<!-- /footer -->
+
+			</div>
+			<!-- /content area -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</div>
+<!-- /page container -->
+
+</body>
+</html>
